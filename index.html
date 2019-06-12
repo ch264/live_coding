@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Coding Challanges</title>
+</head>
+<body>
+	<h1>Check the console</h1>
+ <div id='pokemon'></div>
+
+	<script>
+	// 1. given a string, return input in all capital letters
+	let string = "hello World!";
+
+	function capital(string) {
+		 // this will print 15 times for 15 letters
+		// let i; 
+		// for (i = 0; i < string.length; i++) {
+		// 	let upper = string.toUpperCase();
+		// 	// console.log(upper)
+		// 	document.write(upper)
+		// }
+		let upper = string.toUpperCase();
+		// document.write(upper)
+	}
+
+	capital(string);
+
+
+	// 2. given a number and a string whose content is a number (for ex. b = ‘80’), return the sum
+	
+		const num = 3;
+		const stringNum = '5'
+
+		function number(num, stringNum) {
+			let stringToNum = parseInt(stringNum, 10);
+			let sum = stringToNum + num;
+			// document.write(sum)
+		}
+		number(num, stringNum);
+
+	// 3. given a set of integers ‘arr’, return a new array of those integers greater than a number ‘n’
+		let numberHere = 5;
+
+		function greater(numberHere){
+		const arr = [3,3,4,5,6,7];
+		let newArr = [];
+			for (let i = 0; i < arr.length; i++) {
+				if(arr[i] > numberHere) {
+					newArr.push(arr[i])
+				}
+			}
+			document.write(newArr);
+		}
+		greater(numberHere);
+
+
+	// 4. given a query string (for ex. ‘?ford=30&toyota=55&kia=10&audi=5’), return an object of key value pairs
+
+	function QueryStringToJSON() {
+		let queryString = '?ford=30&toyota=55&kia=10&audi=5';
+		// remove the first character that is always ?.
+		let newQueryString = queryString.slice(1);
+		// console.log(newQueryString)
+		// split string into array 
+		let queryArrays = newQueryString.split('&');
+		// console.log(queryArrays)
+
+
+		var object = {};
+		// itearate through arrays and split them into indicidual arrays with '=' sign
+		queryArrays.forEach(function(pair) {
+			pair = pair.split('=');
+			// we can populate the result object, [0] = key, [1] = value. Use decodeURIComponent function to remove any HTML encoding
+			object[pair[0]] = decodeURIComponent(pair[1] || '');
+		});
+
+		// convert objects to JSON
+		let result = JSON.parse(JSON.stringify(object));
+		console.log(result)
+	}
+	// document.write(result)
+	QueryStringToJSON();
+
+
+	// 5. given an object representing Pokemon ratings and a name, take the rating for that pokemon and return a DIV element with the text ‘[POKEMON NAME] is rated a [POKEMON’S RATING]’ https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+
+	let Pokemon = {
+		name: 'Goldeen',
+		rating: 126
+	}
+
+	function pokeDiv(Pokemon) { 
+		// create a new div element and give it content
+		let element = document.createElement('div');
+		let newContent= document.createTextNode(`${Pokemon.name} is rated ${Pokemon.rating}`);
+		// add the text node to the newly create div and return
+		return element.appendChild(newContent);
+	}
+
+	pokeDiv(Pokemon);
+
+	// 6. insert element returned from the previous function into the DOM
+
+	function newPokeDiv() {
+		let newElement = pokeDiv(Pokemon);
+		// add the newly create element and its content into the DOM
+		let currentDiv = document.getElementById('pokemon');
+		document.body.insertBefore(newElement, currentDiv);
+	}
+
+	newPokeDiv();
+
+
+	</script>
+</body>
+</html>
